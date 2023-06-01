@@ -1,0 +1,69 @@
+.weatherStat {
+  color: whitesmoke;
+  padding-top: 70px;
+  padding-bottom: 70px;
+
+  &Stack {
+    flex-direction: row !important;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+.weatherIcon {
+  font-size: 2rem !important;
+}
+
+.weatherStatText {
+  &Large {
+    color: whitesmoke;
+    text-align: center;
+    font-size: 1.5rem !important;
+  }
+  &Small {
+    color: whitesmoke;
+    text-align: center;
+    font-size: 1rem !important;
+  }
+}
+
+.weatherStatButton {
+  color: whitesmoke;
+  text-align: center;
+  font-size: 2.5rem !important;
+}
+
+.columnStatStack {
+  width: 70px;
+  border-right: 1px solid white;
+  padding: 1rem;
+  justify-content: center;
+  align-items: center;
+}
+
+.psiText {
+  margin: 5px auto !important;
+  width: 37px;
+  text-align: center;
+  color: whitesmoke;
+  background-color: green;
+  border: 1px solid white;
+  border-radius: 4px;
+  font-size: 1.5rem !important;
+}
+
+.rainPrecipitation {
+  color: whitesmoke;
+  font-size: 1.5rem !important;
+  margin: 7px auto !important;
+}
+
+.dengueCircle {
+  height: 55px;
+  width: 55px;
+  background-color: #82b6f7;
+  border: 1px solid white;
+  border-radius: 50%;
+  display: inline-block;
+  margin: 10px auto !important;
+}
