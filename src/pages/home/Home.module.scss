@@ -1,8 +1,14 @@
-.container {
+.weatherContainerWrapper {
   background-image: linear-gradient(#0068cc, #70b9ff);
 }
 
 .weatherContainer {
   margin: auto;
   max-width: 1000px;
+}
+
+.interactiveChart {
+  margin: auto;
+  max-width: 1000px;
+  overflow-x: scroll;
 }
