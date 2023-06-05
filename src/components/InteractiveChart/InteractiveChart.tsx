@@ -17,6 +17,7 @@ import 'chartjs-adapter-date-fns'
 import { Typography } from '@material-ui/core'
 import { Box, Stack } from '@mui/material'
 import { useRef } from 'react'
+import ChartDataLabels from 'chartjs-plugin-datalabels'
 
 ChartJS.register(
   CategoryScale,
@@ -28,6 +29,7 @@ ChartJS.register(
   Tooltip,
   Filler,
   Legend,
+  ChartDataLabels,
 )
 
 export const data = {
@@ -111,7 +113,16 @@ export const options = {
       display: false,
     },
     tooltip: {
-      enabled: false,
+      enabled: true,
+    },
+    datalabels: {
+      formatter: (value: any, context: { datasetIndex: any }) => {
+        if (context.datasetIndex === 1) {
+          return value.x + ': ' + `\n` + value.y + 'm'
+        } else {
+          return value.x
+        }
+      },
     },
   },
 }
@@ -120,22 +131,29 @@ const InteractiveChart = () => {
   const chartRef = useRef<HTMLCanvasElement | any>()
 
   const onScroll = (event: any) => {
+    console.log(event.currentTarget)
     console.log(chartRef)
     console.log(getElementsAtEvent(chartRef.current, event))
   }
 
   return (
-    <Box className={styles.interactiveChart} component='div'>
-      <div className={styles.chartContainer}>
+    <Box className={styles.interactiveChart}>
+      <Box className={styles.chartContainer}>
         <Stack direction='row' className={styles.chartTitle}>
-          <Typography className={styles.tideText} style={{ color: '#31667a' }}>
+          <Typography className={styles.tide} style={{ color: '#31667a' }}>
             Tide
           </Typography>
           <Typography className={styles.dot}> • </Typography>
-          <Typography className={styles.sunText}>Sunrise & Sunset</Typography>
+          <Typography className={styles.sun}>Sunrise & Sunset</Typography>
         </Stack>
-        <Line data={data} options={options} ref={chartRef} onScroll={onScroll} />
-      </div>
+        <Line
+          data={data}
+          options={options}
+          ref={chartRef}
+          onScroll={onScroll}
+          plugins={[ChartDataLabels]}
+        />
+      </Box>
     </Box>
   )
 }

@@ -1,7 +1,13 @@
+.interactiveChart {
+  margin: auto;
+  max-width: 1000px;
+  overflow-x: scroll;
+}
+
 .chartContainer {
   position: relative;
-  width: 5000px;
   height: 200px;
+  width: 5000px;
 }
 
 .chartTitle {
@@ -11,16 +17,10 @@
   text-align: center;
 }
 
-.tideText {
+.tide {
   color: navy;
 }
 
-.sunText {
+.sun {
   color: orangered;
-}
-
-.interactiveChart {
-  margin: auto;
-  max-width: 1000px;
-  overflow-x: scroll;
 }
