@@ -1,17 +1,26 @@
 .chartContainer {
   position: relative;
   width: 5000px;
-  height: 250px;
+  height: 200px;
 }
 
 .chartTitle {
   position: fixed;
-  // margin-top: 10px;
   font-size: 20px;
   gap: 0.5rem;
   text-align: center;
 }
 
 .tideText {
-  color: 'cyan' !important;
+  color: navy;
+}
+
+.sunText {
+  color: orangered;
+}
+
+.interactiveChart {
+  margin: auto;
+  max-width: 1000px;
+  overflow-x: scroll;
 }

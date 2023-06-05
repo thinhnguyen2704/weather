@@ -1,4 +1,3 @@
-import React from 'react'
 import WeatherInfo from '../../components/WeatherInfo'
 import { Box } from '@mui/material'
 import Header from '../../components/Header'
@@ -14,9 +13,7 @@ const Home = () => {
           <WeatherInfo />
         </Box>
       </Box>
-      <Box className={styles.interactiveChart} component='div'>
-        <InteractiveChart />
-      </Box>
+      <InteractiveChart />
     </div>
   )
 }
