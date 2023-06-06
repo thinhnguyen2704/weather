@@ -6,7 +6,7 @@
 
 .chartContainer {
   position: relative;
-  height: 32vh;
+  height: 38vh;
   width: 5000px;
 }
 
@@ -23,4 +23,33 @@
 
 .sun {
   color: orangered;
+}
+
+.barDate {
+  position: absolute;
+  bottom: 33%;
+  left: calc(47% + 2px);
+  text-align: center;
+}
+
+.sunIcon {
+  position: absolute;
+  left: calc(49% + 2px);
+  color: orange;
+}
+
+.verticalBar {
+  width: 2px;
+  background-image: linear-gradient(#000, #bbbfc3);
+  position: absolute;
+  height: 180px;
+  bottom: calc(5% - 4px);
+  left: calc(50% + 2px);
+  z-index: 1000;
+}
+
+.barTime {
+  position: absolute;
+  bottom: 1%;
+  left: calc(48% - 2px);
 }
