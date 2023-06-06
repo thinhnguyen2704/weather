@@ -12,12 +12,12 @@ import {
   Legend,
   TimeScale,
 } from 'chart.js' // import styles from './InteractiveChart.module.scss'
-import { Line, getElementsAtEvent } from 'react-chartjs-2'
+import { Line } from 'react-chartjs-2'
 import 'chartjs-adapter-date-fns'
 import { Typography } from '@material-ui/core'
 import { Box, Stack } from '@mui/material'
-import { useRef } from 'react'
 import ChartDataLabels from 'chartjs-plugin-datalabels'
+import { format, parseISO } from 'date-fns'
 
 ChartJS.register(
   CategoryScale,
@@ -55,6 +55,9 @@ export const data = {
       borderColor: 'orange',
       showTooltip: true,
       order: 1,
+      datalabels: {
+        color: 'orange',
+      },
     },
     {
       // Tide: Meters above sea
@@ -82,6 +85,15 @@ export const data = {
       fill: true,
       showTooltip: true,
       order: 2,
+      datalabels: {
+        align: 'center' as const,
+        anchor: 'center' as const,
+        backgroundColor: 'white',
+        color: 'navy',
+        borderRadius: 5,
+        opacity: 0.65,
+        textAlign: 'center' as const,
+      },
     },
   ],
 }
@@ -105,7 +117,10 @@ export const options = {
   maintainAspectRatio: false,
   layout: {
     padding: {
+      left: 40,
+      right: 40,
       top: 70,
+      bottom: 30,
     },
   },
   plugins: {
@@ -117,24 +132,23 @@ export const options = {
     },
     datalabels: {
       formatter: (value: any, context: { datasetIndex: any }) => {
-        if (context.datasetIndex === 1) {
-          return value.x + ': ' + `\n` + value.y + 'm'
-        } else {
-          return value.x
-        }
+        return (
+          format(parseISO(value.x), 'hh:mm a') +
+          `\n` +
+          (context.datasetIndex === 1 ? +' ' + value.y + 'm' : '')
+        )
+      },
+      font: {
+        size: 15,
+      },
+      margin: {
+        top: 30 as const,
       },
     },
   },
 }
 
 const InteractiveChart = () => {
-  const chartRef = useRef<HTMLCanvasElement | any>()
-
-  const onScroll = (event: any) => {
-    console.log(event.currentTarget)
-    console.log(chartRef)
-    console.log(getElementsAtEvent(chartRef.current, event))
-  }
 
   return (
     <Box className={styles.interactiveChart}>
@@ -149,8 +163,6 @@ const InteractiveChart = () => {
         <Line
           data={data}
           options={options}
-          ref={chartRef}
-          onScroll={onScroll}
           plugins={[ChartDataLabels]}
         />
       </Box>
