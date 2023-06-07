@@ -25,6 +25,7 @@ import { useState } from 'react'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { MotionPathPlugin } from 'gsap/MotionPathPlugin'
 import { ChartData } from '../utils/types'
+import { useHorizontalScroll } from '../../hooks/useHorizontalScroll'
 
 ChartJS.register(
   CategoryScale,
@@ -64,7 +65,6 @@ export const options = {
       left: 40,
       right: 40,
       top: 70,
-      bottom: 30,
     },
   },
   plugins: {
@@ -86,40 +86,61 @@ export const options = {
         size: 15,
       },
     },
+    annotation: {
+      annotations: {
+        nightTime1: {
+          type: 'box',
+          drawTime: 'beforeDatasetsDraw',
+          xMin: 2,
+          xMax: 3,
+          backgroundColor: 'black',
+        },
+      },
+    },
   },
 }
 
 const InteractiveChart = () => {
   const [isDayTime, setIsDayTime] = useState(false)
+  const scrollRef = useHorizontalScroll()
   console.log(isDayTime, setIsDayTime)
   const barDate = '6th June'
-  const barTime = '06:00 AM'
 
   gsap.defaults({ ease: 'none' })
 
   ScrollTrigger.create({})
 
-  return (
-    <Box className={styles.interactiveChart}>
-      <Stack direction='row' className={styles.chartTitle}>
-        <Typography className={styles.tide}>Tide</Typography>
-        <Typography className={styles.dot}> • </Typography>
-        <Typography className={styles.sun}>Sunrise & Sunset</Typography>
-      </Stack>
-      <Typography className={styles.verticalBar} />
-      <WbSunnyIcon className={styles.sunIcon} />
-      <Typography className={styles.barDate}>{barDate}</Typography>
-      <Typography className={styles.barTime}>{barTime}</Typography>
+  // const main = gsap.timeline({
+  //   scrollTrigger: {
+  //     trigger: '#chart',
+  //     scrub: true,
+  //   }
+  // })
 
-      <Box className={styles.chartContainer}>
-        <Line
-          id='chart'
-          className={styles.chart}
-          data={data}
-          options={options}
-          plugins={[ChartDataLabels]}
-        />
+  return (
+    <Box className={styles.chartBox}>
+      <Box className={styles.chartCard} ref={scrollRef}>
+        <Box className={styles.chartContainer}>
+          <Line
+            id='chart'
+            className={styles.chart}
+            data={data}
+            options={options}
+            plugins={[ChartDataLabels]}
+          />
+        </Box>
+        <Box className={styles.chartText} >
+          <Stack direction='row' className={styles.chartTitle}>
+            <Typography className={styles.tide}>Tide</Typography>
+            <Typography className={styles.dot}> • </Typography>
+            <Typography className={styles.sun}>Sunrise & Sunset</Typography>
+          </Stack>
+          <Typography className={styles.verticalBar} />
+          <WbSunnyIcon className={styles.sunIcon} />
+          <Typography className={styles.barDate}>{barDate}</Typography>
+        </Box>
       </Box>
+      <Box className={styles.chartText}></Box>
     </Box>
   )
 }
