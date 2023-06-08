@@ -6,9 +6,8 @@ export function useHorizontalScroll() {
     const mouseWheel = mouseWheelRef?.current
     if (mouseWheel) {
       const onWheel = (evt: WheelEvent) => {
-        evt.preventDefault()
         mouseWheel.scrollBy({
-          left: evt.deltaY < 0 ? -60 : 60,
+          left: evt.deltaY < 0 ? -5 : 5,
         })
       }
       mouseWheel.addEventListener('wheel', onWheel)

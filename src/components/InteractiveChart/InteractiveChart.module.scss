@@ -1,48 +1,63 @@
 .chartCard {
-  max-width: 1000px;
+  width: 1000px;
+  min-width: 1000px;
   margin: auto;
   position: relative;
   overflow-x: scroll;
 
   .chartContainer {
-    width: 8000px;
-    height: 280px;
+    width: 7900px;
+    height: 210px;
   }
 }
 
 .chartText {
   position: absolute;
+  max-width: 1000px;
   bottom: 100%;
-  z-index: 100;
 
   .chartTitle {
     position: fixed;
     font-size: 20px;
-    margin-top: 10px;
     margin-left: 10px;
     gap: 0.5rem;
     text-align: center;
-
     .tide {
       color: navy;
+      font-size: 20px;
     }
-
+    .dot {
+      font-size: 20px;
+    }
     .sun {
       color: orangered;
+      font-size: 20px;
     }
   }
 
-  .barDate {
+  .date {
+    width: 150px;
     position: fixed;
-    margin-top: 40px;
-    left: calc(48% - 5px);
+    margin-top: 25px;
+    left: calc(50% - 75px);
     text-align: center;
+    font-size: 25px;
+  }
+
+  .time {
+    width: 100px;
+    position: fixed;
+    left: calc(50% - 50px);
+    margin-top: 190px;
+    text-align: center;
+    color: gray;
   }
 
   .sunIcon {
+    width: 50px;
     position: fixed;
-    margin-top: 60px;
-    left: calc(49% + 2px);
+    margin-top: 70px;
+    left: calc(50% - 24px);
     color: orange;
   }
 
@@ -50,8 +65,8 @@
     position: fixed;
     width: 2px;
     background-image: linear-gradient(#000, #bbbfc3);
-    height: 190px;
-    margin-top: 85px;
-    left: calc(50%);
+    height: 130px;
+    margin-top: 60px;
+    left: 50%;
   }
 }

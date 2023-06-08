@@ -46,7 +46,7 @@ const WeatherInfo = () => {
         </Stack>
         <Stack
           sx={{
-            width: '55px',
+            width: '60px',
             height: '55px',
             padding: '1rem',
             justifyContent: 'center',

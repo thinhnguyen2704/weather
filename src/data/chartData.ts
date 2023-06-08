@@ -1,3 +1,7 @@
+import { ChartData } from '../utils/types'
+import { format, parseISO } from 'date-fns'
+import { Context } from 'chartjs-plugin-datalabels'
+
 export const data = {
   datasets: [
     {
@@ -26,9 +30,6 @@ export const data = {
         align: 'center' as const,
         color: 'orange',
         display: 'auto',
-        padding: {
-          bottom: 50,
-        },
       },
     },
     {
@@ -68,4 +69,83 @@ export const data = {
       },
     },
   ],
+}
+export const options = {
+  scales: {
+    x: {
+      type: 'time' as const,
+      time: {
+        unit: 'hour' as const,
+      },
+      grid: {
+        display: false,
+      },
+      display: false,
+      beginAtZero: false,
+    },
+    y: {
+      display: false,
+    },
+  },
+  responsive: true,
+  maintainAspectRatio: false,
+  layout: {
+    padding: {
+      left: 40,
+      right: 40,
+      top: 70,
+      bottom: 20,
+    },
+  },
+  plugins: {
+    legend: {
+      display: false,
+    },
+    tooltip: {
+      enabled: false,
+    },
+    datalabels: {
+      formatter: (value: ChartData, context: Context) => {
+        return (
+          format(parseISO(value.x), 'hh:mm a') +
+          `\n` +
+          (context.datasetIndex === 1 ? +' ' + value.y + 'm' : '')
+        )
+      },
+      font: {
+        size: 15,
+      },
+    },
+    annotation: {
+      annotations: {
+        nightTime1: {
+          type: 'box',
+          drawTime: 'afterDatasetsDraw',
+          xMin: 2,
+          xMax: 3,
+          backgroundColor: 'black',
+        },
+      },
+    },
+  },
+}
+export const formatTime = (time: number) => {
+  const formattedTime = time % 24
+  const decimal = formattedTime % 1
+  const hr = Math.floor(formattedTime)
+  const min = Math.floor(60 * decimal)
+  if (hr > 12) {
+    return `${hr - 12 >= 10 ? '' : '0'}${hr - 12}:${min >= 10 ? '' : '0'}${min} pm`
+  } else if (hr === 0) {
+    return `${12}:${min >= 10 ? '' : '0'}${min} am`
+  }
+  return `${hr >= 10 ? '' : '0'}${hr}:${min >= 10 ? '' : '0'}${min} am`
+}
+
+export const convertScrollToTime = (scrollPercentage: number) => {
+  return (
+    scrollPercentage * 60 +
+    7.5 -
+    (window.innerWidth > 1000 ? 0 : (1000 - window.innerWidth) / (2 * 82.3))
+  )
 }
