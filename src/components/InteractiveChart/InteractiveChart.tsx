@@ -43,8 +43,8 @@ gsap.registerPlugin(MotionPathPlugin, ScrollTrigger)
 const InteractiveChart = () => {
   const [time, setTime] = useState('')
   const scrollRef = useHorizontalScroll()
-  // const [isDayTime, setIsDayTime] = useState(false)
-  // console.log(isDayTime, setIsDayTime)
+  const [isDayTime, setIsDayTime] = useState(false)
+  console.log(isDayTime, setIsDayTime)
   const date = '2nd June'
 
   gsap.defaults({ ease: 'none' })
@@ -65,6 +65,22 @@ const InteractiveChart = () => {
     }
   }
 
+  useEffect(() => {
+    if (time > '06:00') {
+      console.log('a')
+      setIsDayTime(true)
+    }
+  }, [time])
+
+  useEffect(() => {
+    if (!isDayTime) {
+      const sun = document.getElementById('sun') || ''
+      if (sun) {
+        sun.style.display = 'none'
+      }
+    }
+  }, [isDayTime])
+
   return (
     <Box className={styles.chartBox}>
       <Box id='chartCard' className={styles.chartCard} ref={scrollRef}>
@@ -84,7 +100,7 @@ const InteractiveChart = () => {
             <Typography className={styles.sun}>Sunrise & Sunset</Typography>
           </Stack>
           <Typography className={styles.verticalBar} />
-          <WbSunnyIcon className={styles.sunIcon} />
+          <WbSunnyIcon id='sun' className={styles.sunIcon} />
           <Typography className={styles.date}>{date}</Typography>
           <Typography className={styles.time}>{time}</Typography>
         </Box>

@@ -1,6 +1,5 @@
 .chartCard {
-  width: 1000px;
-  min-width: 1000px;
+  max-width: 1000px;
   margin: auto;
   position: relative;
   overflow-x: scroll;
@@ -13,7 +12,6 @@
 
 .chartText {
   position: absolute;
-  max-width: 1000px;
   bottom: 100%;
 
   .chartTitle {

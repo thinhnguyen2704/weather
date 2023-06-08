@@ -135,11 +135,11 @@ export const formatTime = (time: number) => {
   const hr = Math.floor(formattedTime)
   const min = Math.floor(60 * decimal)
   if (hr > 12) {
-    return `${hr - 12 >= 10 ? '' : '0'}${hr - 12}:${min >= 10 ? '' : '0'}${min} pm`
+    return `${hr - 12 >= 10 ? '' : '0'}${hr - 12}:${min >= 10 ? '' : '0'}${min} PM`
   } else if (hr === 0) {
-    return `${12}:${min >= 10 ? '' : '0'}${min} am`
+    return `12:${min >= 10 ? '' : '0'}${min} PM`
   }
-  return `${hr >= 10 ? '' : '0'}${hr}:${min >= 10 ? '' : '0'}${min} am`
+  return `${hr >= 10 ? '' : '0'}${hr}:${min >= 10 ? '' : '0'}${min} AM`
 }
 
 export const convertScrollToTime = (scrollPercentage: number) => {
