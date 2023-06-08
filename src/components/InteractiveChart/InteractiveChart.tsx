@@ -44,7 +44,6 @@ const InteractiveChart = () => {
   const [time, setTime] = useState('')
   const scrollRef = useHorizontalScroll()
   const [isDayTime, setIsDayTime] = useState(false)
-  console.log(isDayTime, setIsDayTime)
   const date = '2nd June'
 
   gsap.defaults({ ease: 'none' })
@@ -67,16 +66,17 @@ const InteractiveChart = () => {
 
   useEffect(() => {
     if (time > '06:00') {
-      console.log('a')
       setIsDayTime(true)
     }
   }, [time])
 
   useEffect(() => {
-    if (!isDayTime) {
-      const sun = document.getElementById('sun') || ''
-      if (sun) {
+    const sun = document.getElementById('sun') || ''
+    if (sun) {
+      if (!isDayTime) {
         sun.style.display = 'none'
+      } else {
+        sun.style.display = 'inline'
       }
     }
   }, [isDayTime])
