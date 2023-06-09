@@ -77,7 +77,6 @@ const InteractiveChart = () => {
   }
 
   useEffect(() => {
-    console.log(time)
     const sun = document.getElementById('sun') || ''
     const moon = document.getElementById('moon') || ''
     if (sun && moon) {
