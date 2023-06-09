@@ -134,12 +134,14 @@ export const formatTime = (time: number) => {
   const decimal = formattedTime % 1
   const hr = Math.floor(formattedTime)
   const min = Math.floor(60 * decimal)
+  const normalTime = `${hr >= 10 ? '' : '0'}${hr}:${min}`
+  let AMPMTime = ''
   if (hr > 12) {
-    return `${hr - 12 >= 10 ? '' : '0'}${hr - 12}:${min >= 10 ? '' : '0'}${min} PM`
+    AMPMTime = `${hr - 12 >= 10 ? '' : '0'}${hr - 12}:${min >= 10 ? '' : '0'}${min} PM`
   } else if (hr === 0) {
-    return `12:${min >= 10 ? '' : '0'}${min} PM`
-  }
-  return `${hr >= 10 ? '' : '0'}${hr}:${min >= 10 ? '' : '0'}${min} AM`
+    AMPMTime = `12:${min >= 10 ? '' : '0'}${min} PM`
+  } else AMPMTime = `${hr >= 10 ? '' : '0'}${hr}:${min >= 10 ? '' : '0'}${min} AM`
+  return { normalTime, AMPMTime }
 }
 
 export const convertScrollToTime = (scrollPercentage: number) => {

@@ -24,6 +24,7 @@ import { useState, useEffect } from 'react'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { MotionPathPlugin } from 'gsap/MotionPathPlugin'
 import { useHorizontalScroll } from '../../hooks/useHorizontalScroll'
+import DarkModeIcon from '@mui/icons-material/DarkMode'
 
 ChartJS.register(
   CategoryScale,
@@ -42,9 +43,9 @@ gsap.registerPlugin(MotionPathPlugin, ScrollTrigger)
 
 const InteractiveChart = () => {
   const [time, setTime] = useState('')
+  const [AMPMTime, setAMPMTime] = useState('')
   const scrollRef = useHorizontalScroll()
-  const [isDayTime, setIsDayTime] = useState(false)
-  const date = '2nd June'
+  const [date, setDate] = useState('2nd June')
 
   gsap.defaults({ ease: 'none' })
 
@@ -60,26 +61,35 @@ const InteractiveChart = () => {
     const chart = document.querySelector('#chartCard')
     if (chart) {
       const scrollPercentage = (chart.scrollLeft * 1.5691) / chart.scrollWidth
-      setTime(formatTime(convertScrollToTime(scrollPercentage)))
+      const { normalTime, AMPMTime } = formatTime(convertScrollToTime(scrollPercentage))
+      setTime(normalTime)
+      setAMPMTime(AMPMTime)
+      if (scrollPercentage < 0.341) {
+        setDate('2nd June')
+      } else if (scrollPercentage > 0.341 && scrollPercentage < 0.741) {
+        setDate('3rd June')
+      } else if (scrollPercentage > 0.741 && scrollPercentage < 1.141) {
+        setDate('4th June')
+      } else {
+        setDate('5th June')
+      }
     }
   }
 
   useEffect(() => {
-    if (time > '06:00') {
-      setIsDayTime(true)
-    }
-  }, [time])
-
-  useEffect(() => {
+    console.log(time)
     const sun = document.getElementById('sun') || ''
-    if (sun) {
-      if (!isDayTime) {
-        sun.style.display = 'none'
-      } else {
+    const moon = document.getElementById('moon') || ''
+    if (sun && moon) {
+      if (time >= '05:30' && time <= '18:30') {
         sun.style.display = 'inline'
+        moon.style.display = 'none'
+      } else {
+        sun.style.display = 'none'
+        moon.style.display = 'inline'
       }
     }
-  }, [isDayTime])
+  }, [time])
 
   return (
     <Box className={styles.chartBox}>
@@ -100,9 +110,10 @@ const InteractiveChart = () => {
             <Typography className={styles.sun}>Sunrise & Sunset</Typography>
           </Stack>
           <Typography className={styles.verticalBar} />
-          <WbSunnyIcon id='sun' className={styles.sunIcon} />
+          <WbSunnyIcon id='sun' className={styles.barIcon} />
+          <DarkModeIcon id='moon' className={styles.barIcon} />
           <Typography className={styles.date}>{date}</Typography>
-          <Typography className={styles.time}>{time}</Typography>
+          <Typography className={styles.time}>{AMPMTime}</Typography>
         </Box>
       </Box>
       <Box className={styles.chartText}></Box>
