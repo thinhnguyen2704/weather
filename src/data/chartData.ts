@@ -120,7 +120,7 @@ export const options = {
       annotations: {
         nightTime1: {
           type: 'box',
-          drawTime: 'afterDatasetsDraw',
+          drawTime: 'afterDatasetDraw',
           xMin: 2,
           xMax: 3,
           backgroundColor: 'black',

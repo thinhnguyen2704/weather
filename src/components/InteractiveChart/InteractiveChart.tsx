@@ -80,7 +80,7 @@ const InteractiveChart = () => {
     const sun = document.getElementById('sun') || ''
     const moon = document.getElementById('moon') || ''
     if (sun && moon) {
-      if (time >= '05:30' && time <= '18:30') {
+      if (time >= '05:05' && time <= '18:30') {
         sun.style.display = 'inline'
         moon.style.display = 'none'
       } else {
