@@ -134,7 +134,7 @@ export const formatTime = (time: number) => {
   const decimal = formattedTime % 1
   const hr = Math.floor(formattedTime)
   const min = Math.floor(60 * decimal)
-  const normalTime = `${hr >= 10 ? '' : '0'}${hr}:${min}`
+  const normalTime = `${hr >= 10 ? '' : '0'}${hr}:${min >= 10 ? '' : '0'}${min}`
   let AMPMTime = ''
   if (hr > 12) {
     AMPMTime = `${hr - 12 >= 10 ? '' : '0'}${hr - 12}:${min >= 10 ? '' : '0'}${min} PM`
