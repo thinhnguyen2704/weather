@@ -70,6 +70,7 @@ export const data = {
     },
   ],
 }
+
 export const options = {
   scales: {
     x: {
@@ -116,19 +117,54 @@ export const options = {
         size: 15,
       },
     },
+    autocolors: false,
     annotation: {
       annotations: {
-        nightTime1: {
-          type: 'box',
-          drawTime: 'afterDatasetDraw',
-          xMin: 2,
-          xMax: 3,
-          backgroundColor: 'black',
+        nighttime1: {
+          type: 'box' as const,
+          xMin: '2023-06-02T02:00:00',
+          xMax: '2023-06-02T05:45:00',
+          yMin: 0,
+          yMax: 6,
+          backgroundColor: 'rgba(0, 0, 0, 0.35)',
+        },
+        nighttime2: {
+          type: 'box' as const,
+          xMin: '2023-06-02T18:30:00',
+          xMax: '2023-06-03T05:00:00',
+          yMin: 0,
+          yMax: 6,
+          backgroundColor: 'rgba(0, 0, 0, 0.35)',
+        },
+        nighttime3: {
+          type: 'box' as const,
+          xMin: '2023-06-03T18:30:00',
+          xMax: '2023-06-04T05:00:00',
+          yMin: 0,
+          yMax: 6,
+          backgroundColor: 'rgba(0, 0, 0, 0.35)',
+        },
+        nighttime4: {
+          type: 'box' as const,
+          xMin: '2023-06-04T18:30:00',
+          xMax: '2023-06-05T05:00:00',
+          yMin: 0,
+          yMax: 6,
+          backgroundColor: 'rgba(0, 0, 0, 0.35)',
+        },
+        nighttime5: {
+          type: 'box' as const,
+          xMin: '2023-06-05T18:30:00',
+          xMax: '2023-06-05T22:46:00',
+          yMin: 0,
+          yMax: 6,
+          backgroundColor: 'rgba(0, 0, 0, 0.35)',
         },
       },
     },
   },
 }
+
 export const formatTime = (time: number) => {
   const formattedTime = time % 24
   const decimal = formattedTime % 1

@@ -17,11 +17,11 @@ import 'chartjs-adapter-date-fns'
 import { Typography } from '@material-ui/core'
 import { Box, Stack } from '@mui/material'
 import ChartDataLabels from 'chartjs-plugin-datalabels'
+import annotationPlugin from 'chartjs-plugin-annotation';
 import { convertScrollToTime, data, formatTime, options } from '../../data/chartData'
 import { gsap } from 'gsap'
 import WbSunnyIcon from '@mui/icons-material/WbSunny'
 import { useState, useEffect } from 'react'
-import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { MotionPathPlugin } from 'gsap/MotionPathPlugin'
 import { useHorizontalScroll } from '../../hooks/useHorizontalScroll'
 import DarkModeIcon from '@mui/icons-material/DarkMode'
@@ -37,9 +37,10 @@ ChartJS.register(
   Filler,
   Legend,
   ChartDataLabels,
+  annotationPlugin,
 )
 
-gsap.registerPlugin(MotionPathPlugin, ScrollTrigger)
+gsap.registerPlugin(MotionPathPlugin)
 
 const InteractiveChart = () => {
   const [time, setTime] = useState('')
@@ -48,8 +49,6 @@ const InteractiveChart = () => {
   const [date, setDate] = useState('2nd June')
 
   gsap.defaults({ ease: 'none' })
-
-  ScrollTrigger.create({})
 
   useEffect(() => {
     document.querySelector('#chartCard')?.addEventListener('scroll', scrollHandler)
