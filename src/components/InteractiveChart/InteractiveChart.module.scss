@@ -1,0 +1,71 @@
+.chartCard {
+  max-width: 1000px;
+  margin: auto;
+  position: relative;
+  overflow-x: scroll;
+
+  .chartContainer {
+    width: 7900px;
+    height: 210px;
+  }
+}
+
+.chartText {
+  position: absolute;
+  bottom: 100%;
+
+  .chartTitle {
+    position: fixed;
+    font-size: 20px;
+    margin-left: 10px;
+    gap: 0.5rem;
+    text-align: center;
+    .tide {
+      color: navy;
+      font-size: 20px;
+    }
+    .dot {
+      font-size: 20px;
+    }
+    .sun {
+      color: orangered;
+      font-size: 20px;
+    }
+  }
+
+  .date {
+    width: 150px;
+    position: fixed;
+    margin-top: 25px;
+    left: calc(50% - 75px);
+    text-align: center;
+    font-size: 25px;
+  }
+
+  .time {
+    width: 100px;
+    position: fixed;
+    left: calc(50% - 50px);
+    margin-top: 190px;
+    text-align: center;
+    color: gray;
+  }
+
+  .barIcon {
+    width: 50px;
+    font-size: 2rem;
+    position: fixed;
+    margin-top: 55px;
+    left: calc(50% - 24px);
+    color: orange;
+  }
+
+  .verticalBar {
+    position: fixed;
+    width: 2px;
+    background-image: linear-gradient(#000, #bbbfc3);
+    height: 130px;
+    margin-top: 60px;
+    left: 50%;
+  }
+}

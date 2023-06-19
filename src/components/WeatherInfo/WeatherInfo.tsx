@@ -35,10 +35,7 @@ const WeatherInfo = () => {
         </Stack>
         <Stack className={styles.columnStatStack}>
           <Typography className={styles.weatherStatTextSmall}>RAIN</Typography>
-          <Typography
-            className={styles.rainPrecipitation}
-            style={{ }}
-          >
+          <Typography className={styles.rainPrecipitation} style={{}}>
             4
           </Typography>
           <Typography className={styles.weatherStatTextSmall}>mm</Typography>
@@ -47,7 +44,15 @@ const WeatherInfo = () => {
           <Typography className={styles.weatherStatTextSmall}>DENGUE</Typography>
           <span className={styles.dengueCircle}></span>
         </Stack>
-        <Stack sx={{ w: '70px', h: '65px', p: '1rem' }}>
+        <Stack
+          sx={{
+            width: '60px',
+            height: '55px',
+            padding: '1rem',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}
+        >
           <Button>
             <AddCircleIcon className={styles.weatherStatButton} />
           </Button>
